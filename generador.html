@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Generador de Links - Boda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-10 bg-gray-100">
+    <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+        <h2 class="font-bold mb-4">Generar Link de Invitación</h2>
+        <input id="urlBase" type="text" value="https://QuiroaOscar.github.io/boda/" class="w-full p-2 border mb-2" placeholder="URL de tu GitHub Pages">
+        <input id="nombre" type="text" class="w-full p-2 border mb-2" placeholder="Nombre del invitado">
+        <input id="pases" type="number" class="w-full p-2 border mb-2" placeholder="Número de pases">
+        <button onclick="generar()" class="w-full bg-blue-500 text-white p-2 rounded">Generar Link</button>
+        
+        <div id="resultado" class="mt-4 p-2 bg-green-100 hidden break-all"></div>
+        <a id="whatsapp" href="#" class="mt-2 block text-center text-green-600 font-bold hidden">Enviar por WhatsApp</a>
+    </div>
+
+    <script>
+        function generar() {
+            const base = document.getElementById('urlBase').value;
+            const pases = document.getElementById('pases').value;
+            const nombre = document.getElementById('nombre').value;
+            const linkFinal = `${base}?p=${pases}`;
+            
+            document.getElementById('resultado').innerText = linkFinal;
+            document.getElementById('resultado').classList.remove('hidden');
+            
+            const msj = encodeURIComponent(`¡Hola ${nombre}! Queremos invitarte a nuestra boda. Aquí tienes tu invitación digital con ${pases} pases reservados: ${linkFinal}`);
+            const wa = document.getElementById('whatsapp');
+            wa.href = `https://wa.me/?text=${msj}`;
+            wa.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
