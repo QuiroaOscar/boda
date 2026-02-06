@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Generador de Links - Boda</title>
+    <meta charset="UTF-8">
+    <title>Panel de Invitaciones - Lucia & Julio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
-<body class="p-10 bg-gray-100">
-    <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
-        <h2 class="font-bold mb-4">Generar Link de Invitación</h2>
-        <input id="urlBase" type="text" value="https://QuiroaOscar.github.io/boda/" class="w-full p-2 border mb-2" placeholder="URL de tu GitHub Pages">
-        <input id="nombre" type="text" class="w-full p-2 border mb-2" placeholder="Nombre del invitado">
-        <input id="pases" type="number" class="w-full p-2 border mb-2" placeholder="Número de pases">
-        <button onclick="generar()" class="w-full bg-blue-500 text-white p-2 rounded">Generar Link</button>
+<body class="bg-[#f4f1ea] min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full border-t-8 border-[#1a3016]">
+        <h1 class="font-cinzel text-2xl text-center text-[#1a3016] mb-6">GENERADOR DE LINKS</h1>
         
-        <div id="resultado" class="mt-4 p-2 bg-green-100 hidden break-all"></div>
-        <a id="whatsapp" href="#" class="mt-2 block text-center text-green-600 font-bold hidden">Enviar por WhatsApp</a>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nombre del Invitado</label>
+                <input type="text" id="invitado" placeholder="Ej: Familia Garcia" class="w-full p-3 border rounded border-gray-300 focus:outline-[#c5a059]">
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Número de Pases</label>
+                <input type="number" id="pases" placeholder="Cantidad" class="w-full p-3 border rounded border-gray-300 focus:outline-[#c5a059]">
+            </div>
+
+            <button onclick="generarLink()" class="w-full bg-[#1a3016] text-white p-4 rounded-lg font-bold hover:bg-[#c5a059] transition-colors">
+                GENERAR Y COPIAR LINK
+            </button>
+        </div>
+
+        <div id="resultado" class="hidden mt-6 p-4 bg-gray-100 rounded break-all text-sm text-gray-600 border-l-4 border-[#c5a059]">
+            <p id="url-final"></p>
+        </div>
     </div>
 
     <script>
-        function generar() {
-            const base = document.getElementById('urlBase').value;
+        function generarLink() {
+            const nombre = document.getElementById('invitado').value.trim().replace(/ /g, "_");
             const pases = document.getElementById('pases').value;
-            const nombre = document.getElementById('nombre').value;
-            const linkFinal = `${base}?p=${pases}`;
             
-            document.getElementById('resultado').innerText = linkFinal;
+            if(!nombre || !pases) { alert("Por favor llena ambos campos"); return; }
+
+            // IMPORTANTE: Cambia esta URL por la URL real de tu invitación
+            const urlBase = window.location.href.replace('generador.html', 'index.html');
+            const linkFinal = `${urlBase}?n=${nombre}&p=${pases}`;
+
+            // Copiar al portapapeles automáticamente
+            navigator.clipboard.writeText(linkFinal);
+            
+            // Mostrar resultado
             document.getElementById('resultado').classList.remove('hidden');
+            document.getElementById('url-final').innerText = "¡Copiado! Ya puedes pegarlo en WhatsApp: " + linkFinal;
             
-            const msj = encodeURIComponent(`¡Hola ${nombre}! Queremos invitarte a nuestra boda. Aquí tienes tu invitación digital con ${pases} pases reservados: ${linkFinal}`);
-            const wa = document.getElementById('whatsapp');
-            wa.href = `https://wa.me/?text=${msj}`;
-            wa.classList.remove('hidden');
+            alert("¡Link generado y copiado al portapapeles!");
         }
     </script>
 </body>

@@ -3,43 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Boda</title>
+    <title>Invitación Real - L & J</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="petals-container"></div>
+<body class="bg-[#f9f7f2]">
 
-    <button id="music-btn">🎵</button>
-    <audio id="bg-music" loop src="assets/musica.mp3"></audio>
+<div id="petals-container" class="fixed inset-0 pointer-events-none z-[9999]"></div>
 
-    <section class="hero">
-        <div class="monograma">L & J</div>
-        <h1>¡Nos Casamos!</h1>
-        <div id="timer"></div>
-    </section>
-
-    <section class="pases-seccion">
-        <p>Lugares reservados para ti:</p>
-        <div id="guest-pases">--</div>
-    </section>
-
-    <div class="slider-container">
-        <div id="slider"></div>
+    <div id="envelope-wrapper">
+        <div class="envelope-container" id="main-envelope">
+            <div class="env-back"></div>
+            <div class="env-card">
+                <div class="card-inner">
+                    <p class="typing-effect font-cinzel">ESTÁS INVITADO A NUESTRA BODA</p>
+                    <h1 class="typing-effect font-manos text-[#c5a059]">Lucia & Julio</h1>
+                    <p class="typing-effect font-cinzel">25 DE ABRIL DE 2026</p>
+                </div>
+            </div>
+            <div class="flap-upper"></div>
+            <div class="flap-bottom"></div>
+            <div class="seal-header" onclick="iniciarAnimacion()">
+                <div class="tooltip-click">Click Aquí</div>
+                <div class="seal-logo" id="sello-redondo">
+                    <div class="seal-design">
+                        <span class="font-manos text-4xl">L y J</span>
+                        <hr class="w-8 border-[#c5a059] mx-auto my-1">
+                        <p class="text-[14px] uppercase tracking-tighter">25.04.2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-box">
-        <h3>Confirmar Asistencia</h3>
-        <form id="rsvp-form">
-            <input type="text" id="nombre" placeholder="Tu nombre" required>
-            <select id="asistencia">
-                <option value="Si">Asistiré</option>
-                <option value="No">No podré ir</option>
-            </select>
-            <button type="submit" id="submit-btn">Enviar</button>
-        </form>
-    </div>
+    <main id="main-content" class="hidden opacity-0>
+        <audio id="musica-boda" loop src="assets/music.mp3"></audio>
 
+        <section id="inicio" class="hero-parallax">
+            <div class="parallax-bg" style="background-image: url('assets/Lucia_6.jpeg');"></div>
+            <div class="overlay"></div>
+            <div class="hero-content text-center text-white">
+                <h1 class="font-manos typing-line-1">Lucia & Julio</h1>
+                <div class="extra-spacing">
+                    <p class="font-cinzel typing-line-2">25.04.2026</p>
+                    <!-- <p class="font-cinzel typing-line-3">NUESTRA BODA</p> -->
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion-revelado">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="typing-scroll font-cinzel line-v-1">"Con mucha alegría, te invitamos</p>
+                <p class="typing-scroll font-cinzel line-v-2">a celebrar el primer capítulo de</p>
+                <p class="typing-scroll font-cinzel line-v-3">nuestra historia juntos"</p>
+            </div>
+        </section>
+
+        <section id="cuenta-regresiva-parallax" class="relative overflow-hidden py-24">
+            <div class="parallax-bg-reloj" style="background-image: url('assets/Lucia_10.jpeg');"></div>
+            
+            <div class="absolute inset-0 bg-black/40 z-10"></div> <!--Este efecto hace como que estuvier ahumado la foto del tiempo de la cuenta regresiva -->
+
+            <div class="relative z-20 max-w-4xl mx-auto text-center text-white" data-aos="fade-up">
+                <h2 class="font-manos tracking-[5px]">¡Nos Casamos!</h2>
+                <p class="font-cinzel">Sábado 25 de Abril de 2026</p>
+                
+                <div id="countdown" class="flex justify-center gap-6 text-[#c5a059]">
+                    <div class="flex flex-col"><span id="days" class="text-5xl font-bold">00</span><span class="text-xs uppercase text-white">Días</span></div>
+                    <div class="flex flex-col"><span id="hours" class="text-5xl font-bold">00</span><span class="text-xs uppercase text-white">Horas</span></div>
+                    <div class="flex flex-col"><span id="minutes" class="text-5xl font-bold">00</span><span class="text-xs uppercase text-white">Min</span></div>
+                    <div class="flex flex-col"><span id="seconds" class="text-5xl font-bold">00</span><span class="text-xs uppercase text-white">Seg</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion de CONFIRMAR ASISTENCIA -->
+        <section id="reservacion-completa" class="py-20 bg-[#f4f1ea]">
+    
+            <div class="max-w-4xl mx-auto text-center mb-12 px-6" data-aos="fade-up">
+                <h2 class="font-cinzel text-[#1a3016] text-3xl mb-4 uppercase tracking-[4px]">Confirma tu Asistencia</h2>
+                <p class="font-cinzel text-gray-600 tracking-widest leading-relaxed">
+                    Tu presencia es nuestro mejor regalo. Por favor, ayúdanos a organizar <br class="hidden md:block"> 
+                    mejor nuestro gran día confirmando el número de personas que nos acompañarán.
+                </p>
+            </div>
+
+            <div id="reservacion-dual" class="relative overflow-hidden flex items-stretch">
+                <div class="grid md:grid-cols-2 w-full items-stretch shadow-2xl">
+                    
+                    <div class="relative min-h-[400px] md:min-h-full" data-aos="fade-right">
+                        <img src="assets/Lucia_21.jpeg" alt="Novios" class="absolute inset-0 w-full h-full object-cover shadow-2xl">
+                    </div>
+
+                    <div class="flex items-center justify-center py-20 px-6" data-aos="fade-left">
+                        <div class="max-w-xl mx-auto bg-white p-10 shadow-xl rounded-sm border border-gray-200 relative overflow-hidden text-center">
+                            <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#c5a059] m-4"></div>
+                            <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#c5a059] m-4"></div>
+
+                            <h3 class="font-cinzel text-gray-500 tracking-[3px] text-sm mb-4">¡ES UN PLACER INVITARTE!</h3>
+                            
+                            <h2 id="nombre-invitado" class="font-manos text-[#1a3016] text-5xl md:text-6xl mb-6">Nombre del Invitado</h2>
+                            
+                            <div class="flex justify-center items-center gap-4 mb-6">
+                                <div class="h-[1px] w-10 bg-[#c5a059]"></div>
+                                <span id="cantidad-pases" class="font-cinzel text-4xl text-[#c5a059]">0</span>
+                                <div class="h-[1px] w-10 bg-[#c5a059]"></div>
+                            </div>
+                            
+                            <p class="font-cinzel tracking-widest text-gray-600 mb-10">PASES INDIVIDUALES</p>
+
+                            <div class="flex justify-center mb-6">
+                                <a href="TU_LINK_DE_GOOGLE_FORMS" target="_blank" class="inline-block px-10 py-4 bg-[#1a3016] text-white font-cinzel tracking-[3px] hover:bg-[#c5a059] transition-all duration-500 rounded-full shadow-lg">
+                                    CONFIRMAR ASISTENCIA
+                                </a>
+                            </div>
+                            
+                            <p class="text-xs font-cinzel text-gray-400 italic">Por favor confirmar antes del 25 de Abril de 2026</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion de PADRES NOVIA Y NOVIO -->
+        <section id="seccion-padres" class="py-10 bg-[#f4f1ea]">
+    
+            <div class="max-w-4xl mx-auto text-center mb-12 px-6">
+                <h2 class="font-cinzel text-[#1a3016] text-3xl mb-4 uppercase tracking-[4px]" 
+                    data-aos="fade-up" 
+                    data-aos-duration="1000">
+                    Con la Bendición de Dios
+                </h2>
+                
+                <p class="font-cinzel text-gray-600 tracking-widest leading-relaxed" 
+                data-aos="fade-up" 
+                data-aos-delay="300" 
+                data-aos-duration="1500">
+                    Nuestros padres en el cielo y en la tierra, quienes nos han guiado con amor<br class="hidden md:block"> 
+                    y sabiduría en cada paso de nuestras vidas.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 w-full items-stretch shadow-2xl overflow-hidden">
+                
+                <div class="flex items-center justify-center py-32 px-6 bg-white order-2 md:order-1" 
+                    data-aos="fade-right" 
+                    data-aos-duration="1200">
+                    <div class="max-w-md w-full text-center relative">
+                        <div class="mb-10">
+                            <span class="font-cinzel text-[#c5a059] tracking-[5px] text-xs uppercase italic">Honrando a nuestras familias</span>
+                        </div>
+
+                        <div class="mb-12">
+                            <h3 class="font-manos text-[#1a3016] text-4xl mb-2">Padres de la Novia</h3>
+                            <p class="font-cinzel text-gray-600 text-lg">Edgar Chutan <strong>†</strong></p>
+                            <p class="font-cinzel text-gray-600 text-lg">Miriam Morales</p>
+                        </div>
+
+                        <div class="flex justify-center items-center gap-4 mb-12">
+                            <div class="h-[1px] w-12 bg-[#c5a059]"></div>
+                            <div class="w-2 h-2 rounded-full bg-[#c5a059]"></div>
+                            <div class="h-[1px] w-12 bg-[#c5a059]"></div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-manos text-[#1a3016] text-4xl mb-2">Padres del Novio</h3>
+                            <p class="font-cinzel text-gray-600 text-lg">Julio Kuylen</p>
+                            <p class="font-cinzel text-gray-600 text-lg">Ciria Morales</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative min-h-[700px] order-1 md:order-2" 
+                    data-aos="fade-left" 
+                    data-aos-duration="1200">
+                    <img src="assets/Lucia_4.jpeg" alt="Bendición" class="absolute inset-0 w-full h-full object-cover">
+                    <!-- <div class="absolute inset-0 bg-black/40"></div> -->
+                </div>
+
+            </div>
+        </section>
+
+<!-- SECCION DE LOS PADRINOS -->
+        <section id="padrinos" class="py-24 bg-[#1a3016] text-white overflow-hidden">
+            <div class="max-w-xl mx-auto px-6 text-center">
+                
+                <h2 class="font-cinzel text-[#c5a059] text-4xl mb-20 uppercase tracking-[6px]" 
+                    data-aos="fade-down">
+                    Padrinos
+                </h2>
+
+                <div class="flex flex-col items-center">
+                    
+                    <div class="padrino-item" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                        <div class="mb-4">
+                            <svg class="w-24 h-24 mx-auto text-[#c5a059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"> <!-- Velacion -->
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                <path d="M7 14s-1-1-4-1m14 1s1-1 4-1" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-manos text-3xl mb-2 text-[#c5a059]">Velación</h3>
+                        <p class="font-cinzel tracking-widest text-lg">Sara Elena Morales</p>
+                        <p class="font-cinzel tracking-widest text-lg">Oscar Recinos</p>
+                    </div>
+
+                    <div class="padrino-line" data-aos="zoom-in"></div>
+
+                    <div class="padrino-item" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                        <div class="mb-4">
+                            <svg class="w-24 h-24 mx-auto text-[#c5a059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"> <!-- arras -->
+                                <circle cx="12" cy="7" r="5"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="17" r="5"/>
+                                <path d="M7 7h10M7 13h10M7 17h10" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-manos text-3xl mb-2 text-[#c5a059]">Arras</h3>
+                        <p class="font-cinzel tracking-widest text-lg">Jenny Cadena</p>
+                        <p class="font-cinzel tracking-widest text-lg">Ervin Ramón Morales</p>
+                    </div>
+
+                    <div class="padrino-line" data-aos="zoom-in"></div>
+
+                    <div class="padrino-item" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                        <div class="mb-4">
+                            <svg class="w-24 h-24 mx-auto text-[#c5a059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"> <!-- Lazo -->
+                                <path d="M7 15a4 4 0 100-8 4 4 0 000 8zM17 15a4 4 0 100-8 4 4 0 000 8z"/>
+                                <path d="M10.5 11.5l3 1"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-manos text-3xl mb-2 text-[#c5a059]">Lazo</h3>
+                        <p class="font-cinzel tracking-widest text-lg">Alejandra Roldán</p>
+                        <p class="font-cinzel tracking-widest text-lg">Hugo Catalan</p>
+                    </div>
+
+                    <div class="padrino-line" data-aos="zoom-in"></div>
+
+                    <div class="padrino-item" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                        <div class="mb-4">
+                            <svg class="w-24 h-24 mx-auto text-[#c5a059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"> <!-- anillos -->
+                                <circle cx="9" cy="14" r="5"/><circle cx="15" cy="10" r="5"/>
+                                <path d="M15 5l1-1M8 10l-1-1" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-manos text-3xl mb-2 text-[#c5a059]">Anillos</h3>
+                        <p class="font-cinzel tracking-widest text-lg">Carlos Kuylen</p>
+                        <p class="font-cinzel tracking-widest text-lg">Patricia Aguilar</p>
+                    </div>
+
+                    <div class="padrino-line" data-aos="zoom-in"></div>
+
+                    <div class="padrino-item" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                        <div class="mb-4">
+                            <svg class="w-24 h-24 mx-auto text-[#c5a059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"> <!-- biblia -->
+                                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                                <path d="M12 7v6M10 9h4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-manos text-3xl mb-2 text-[#c5a059]">Biblia</h3>
+                        <p class="font-cinzel tracking-widest text-lg">Graciela Morales</p>
+                        <p class="font-cinzel tracking-widest text-lg">Ervin Morales</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Seccion de ITINERARIO -->
+        <section id="itinerario" class="relative min-h-screen py-20 flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="assets/Lucia_20.jpeg" alt="Fondo" class="w-full h-full object-cover">
+            </div>
+
+            <div class="relative z-10 w-full max-w-4xl mx-4 p-10 rounded-[40px] bg-[#1a3016]/50 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                
+                <h2 class="font-cinzel text-[#c5a059] text-5xl text-center mb-20 uppercase tracking-[8px] drop-shadow-md">Itinerario</h2>
+
+                <div class="relative">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 -translate-x-1/2 hidden md:block"></div>
+
+                    <div class="relative flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 flex justify-center md:justify-end md:pr-20">
+                            <div class="glass-icon-3d anim-iglesia">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" class="w-16 h-16">
+                                    <path d="M3 22h18M5 22v-9l7-7 7 7v9M12 2v4M10 4h4M10 22v-4a2 2 0 014 0v4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="heart-divider-3d"><i class="fas fa-heart"></i></div>
+                        <div class="md:w-1/2 text-center md:text-left md:pl-20 text-white">
+                            <h3 class="font-manos text-5xl text-[#c5a059] mb-2">Ceremonia Religiosa</h3>
+                            <p class="font-cinzel text-xl tracking-widest">4:00 PM - 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 text-center md:text-right md:pr-20 order-2 md:order-1 text-white">
+                            <h3 class="font-manos text-5xl text-[#c5a059] mb-2">Sesión de Fotos</h3>
+                            <p class="font-cinzel text-xl tracking-widest">5:00 PM - 6:00 PM</p>
+                        </div>
+                        <div class="heart-divider-3d"><i class="fas fa-heart"></i></div>
+                        <div class="md:w-1/2 flex justify-center md:justify-start md:pl-20 order-1 md:order-2">
+                            <div class="glass-icon-3d anim-camara">
+                                <div class="flash-radial"></div>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" class="w-16 h-16">
+                                    <rect x="3" y="6" width="18" height="14" rx="2" />
+                                    <circle cx="12" cy="13" r="3" />
+                                    <path d="M9 6l1-3h4l1 3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 flex justify-center md:justify-end md:pr-20">
+                            <div class="glass-icon-3d anim-brindis">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" class="w-16 h-16">
+                                    <path class="cup-l" d="M8 3h-3a2 2 0 00-2 2v3a7 7 0 007 7v5H7m3 0h4" />
+                                    <path class="cup-r" d="M16 3h3a2 2 0 012 2v3a7 7 0 01-7 7v5h3m-3 0h-4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="heart-divider-3d"><i class="fas fa-heart"></i></div>
+                        <div class="md:w-1/2 text-center md:text-left md:pl-20 text-white">
+                            <h3 class="font-manos text-5xl text-[#c5a059] mb-2">Vals y Bienvenida</h3>
+                            <p class="font-cinzel text-xl tracking-widest">6:00 PM - 7:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 text-center md:text-right md:pr-20 order-2 md:order-1 text-white">
+                            <h3 class="font-manos text-5xl text-[#c5a059] mb-2">Cena</h3>
+                            <p class="font-cinzel text-xl tracking-widest">8:00 PM</p>
+                        </div>
+                        <div class="heart-divider-3d"><i class="fas fa-heart"></i></div>
+                        <div class="md:w-1/2 flex justify-center md:justify-start md:pl-20 order-1 md:order-2">
+                            <div class="glass-icon-3d anim-cena">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" class="w-16 h-16">
+                                    <path d="M3 20h18" />
+                                    <path class="lid-top" d="M5 15a7 7 0 0114 0h-14z" fill="rgba(255,255,255,0.1)"/>
+                                    <path d="M12 8V5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center group">
+                        <div class="md:w-1/2 flex justify-center md:justify-end md:pr-20">
+                            <div class="glass-icon-3d anim-disco">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" class="w-16 h-16">
+                                    <circle cx="12" cy="12" r="9" stroke-dasharray="2 2" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 3v2m0 14v2M3 12h2m14 0h2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="heart-divider-3d"><i class="fas fa-heart"></i></div>
+                        <div class="md:w-1/2 text-center md:text-left md:pl-20 text-white">
+                            <h3 class="font-manos text-5xl text-[#c5a059] mb-2">Fiesta</h3>
+                            <p class="font-cinzel text-xl tracking-widest">9:00 PM - 11:00 PM</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="py-20 bg-[#f9f7f2] px-6">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="assets/foto1.jpg" class="rounded-t-full w-full h-[500px] object-cover shadow-2xl">
+                </div>
+                <div class="text-center md:text-left space-y-6" data-aos="fade-left">
+                    <h2 class="font-manos text-6xl text-[#c5a059]">Ceremonia & Recepción</h2>
+                    <div class="space-y-4 font-cinzel text-gray-700">
+                        <p class="text-2xl border-b border-[#c5a059] pb-2 inline-block">25 DE ABRIL 2026</p>
+                        <p class="text-xl">17:00 HORAS</p>
+                        <p class="text-lg opacity-80 mt-6">Nombre de la Finca o Salón<br>Dirección Exacta, Ciudad</p>
+                    </div>
+                    <a href="#" target="_blank" class="inline-block mt-8 px-10 py-4 bg-[#1a3016] text-white font-cinzel tracking-widest hover:bg-[#c5a059] transition-colors rounded-full text-sm">COMO LLEGAR</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white text-center">
+            <div class="max-w-2xl mx-auto px-6" data-aos="zoom-in">
+                <h3 class="font-manos text-6xl text-[#c5a059] mb-4">¿Nos acompañas?</h3>
+                <p class="font-cinzel tracking-widest mb-10 text-gray-600">POR FAVOR CONFIRMA TU ASISTENCIA ANTES DEL 25 DE MARZO</p>
+                <a href="https://wa.me/TUNUMERO" class="inline-block px-12 py-5 border-2 border-[#c5a059] text-[#c5a059] font-cinzel tracking-[4px] hover:bg-[#c5a059] hover:text-white transition-all duration-500">CONFIRMAR POR WHATSAPP</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
