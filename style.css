@@ -66,8 +66,10 @@ body { margin: 0; background: #f9f7f2; overflow-x: hidden; }
     cursor: pointer; 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center !important;
     animation: heartbeat 2s infinite;
+    justify-content: center !important;
+    text-align: center !important;
 }
 
 .seal-logo {
