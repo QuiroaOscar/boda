@@ -38,8 +38,8 @@
         </div>
     </div>
 
-    <main id="main-content" class="hidden opacity-0>
-        <audio id="musica-boda" loop src="assets/music.mp3"></audio>
+    <main id="main-content" class="hidden opacity-0">
+        <audio id="musica-boda" loop src="assets/Luis_Miguel_Te_Necesito.mp3"></audio>
 
         <section id="inicio" class="hero-parallax">
             <div class="parallax-bg" style="background-image: url('assets/Lucia_6.jpeg');"></div>
@@ -372,23 +372,60 @@
         </section>
 
 
-
+        <!-- Seccion de UBICACIÓN Y RECEPCIÓN  -->
         <section class="py-20 bg-[#f9f7f2] px-6">
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
-                    <img src="assets/foto1.jpg" class="rounded-t-full w-full h-[500px] object-cover shadow-2xl">
+                    <img src="assets/Misa.png" class="rounded-t-full w-full h-[500px] object-cover shadow-2xl">
                 </div>
                 <div class="text-center md:text-left space-y-6" data-aos="fade-left">
                     <h2 class="font-manos text-6xl text-[#c5a059]">Ceremonia & Recepción</h2>
                     <div class="space-y-4 font-cinzel text-gray-700">
                         <p class="text-2xl border-b border-[#c5a059] pb-2 inline-block">25 DE ABRIL 2026</p>
-                        <p class="text-xl">17:00 HORAS</p>
-                        <p class="text-lg opacity-80 mt-6">Nombre de la Finca o Salón<br>Dirección Exacta, Ciudad</p>
+                        <p class="text-xl">16:00 HORAS</p>
+                        <p class="text-lg opacity-80 mt-6">Granja Lucita<br>CA-1 Occidente 4 km. después de, Carr. Interamericana, San Lucas Sacatepéquez</p>
                     </div>
-                    <a href="#" target="_blank" class="inline-block mt-8 px-10 py-4 bg-[#1a3016] text-white font-cinzel tracking-widest hover:bg-[#c5a059] transition-colors rounded-full text-sm">COMO LLEGAR</a>
+                    <a href="https://waze.com/ul/h9fxe0r39k" target="_blank" class="inline-block mt-8 px-10 py-4 bg-[#1a3016] text-white font-cinzel tracking-widest hover:bg-[#c5a059] transition-colors rounded-full text-sm">COMO LLEGAR</a>
                 </div>
             </div>
         </section>
+
+
+    <!-- Seccion de REGALOS  -->
+    <section id="regalos" class="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-fixed bg-cover bg-center" 
+            style="background-image: url('assets/mesa_regalos2.jpg');">
+            <div class="absolute inset-0 bg-black/30"></div> 
+        </div>
+
+        <div class="relative z-10 w-[92%] max-w-lg bg-[#4a5d6e]/85 backdrop-blur-md p-10 text-center text-white rounded-lg shadow-2xl"
+            data-aos="fade-up" 
+            data-aos-anchor-placement="center-bottom">
+            
+            <h2 class="font-manos text-5xl md:text-7xl mb-2">Mesa de Regalos</h2>
+                        
+            <p class="font-cinzel text-xs md:text-sm leading-relaxed mb-10 opacity-90">
+                Será una alegría contar con tu compañía. Si quieres acompañarnos también con un detalle, aquí te dejamos unas opciones:
+            </p>
+
+            <div class="flex flex-col items-center mb-10">
+                <img src="assets/cemaco.png" alt="Cemaco" class="w-32 mb-4 logo-blanco">
+                <a href="https://www.cemaco.com/list/BodaKuylenMoralesyChutanMorales25042026" target="_blank" class="border border-white px-6 py-2 font-cinzel text-[10px] tracking-widest hover:bg-white hover:text-[#4a5d6e] transition-all">
+                    IR A CEMACO
+                </a>
+            </div>
+
+            <!-- <div class="flex flex-col items-center">
+                <div class="mb-3 opacity-80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                </div>
+                <button onclick="abrirModalBanco()" class="border border-white px-6 py-2 font-cinzel text-[10px] tracking-widest hover:bg-white hover:text-[#4a5d6e] transition-all">
+                    DATOS BANCARIOS
+                </button> -->
+            </div>
+        </div>
+    </section>
+
 
         <section class="py-24 bg-white text-center">
             <div class="max-w-2xl mx-auto px-6" data-aos="zoom-in">
@@ -401,5 +438,21 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
+
+<!-- BOTON PARA PARAR LA MUSICA -->
+
+<div class="fixed-controls">
+    <button id="music-control" class="floating-btn music-btn" onclick="toggleMusica()">
+        <span id="music-icon">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M12 3v18m5-14v10m5-7v4M7 7v10m-5-7v4" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+    </button>
+
+    <button id="scroll-top" class="floating-btn scroll-btn" onclick="subirTodo()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="24" height="24"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+</div>
+
+
 </body>
 </html>

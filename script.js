@@ -46,6 +46,11 @@ function iniciarAnimacion() {
             const l2 = document.querySelector('.typing-line-2');
             const l3 = document.querySelector('.typing-line-3');
 
+            // CORRECCIÓN PARA MÓVIL: Si la pantalla es pequeña, quitamos el nowrap
+            if (window.innerWidth < 768) {
+                [l1, l2, l3].forEach(el => { if(el) el.style.whiteSpace = "normal"; });
+            }
+
             setTimeout(() => l1.classList.add('start-typing'), 500);
             setTimeout(() => l2.classList.add('start-typing'), 3500);
             setTimeout(() => l3.classList.add('start-typing'), 6500);
@@ -80,9 +85,11 @@ window.addEventListener('scroll', function() {
     const scroll = window.pageYOffset;
     const bg = document.querySelector('.parallax-bg');
     const hero = document.querySelector('.hero-content');
+    const speed = window.innerWidth < 768 ? 0.2 : 0.5; // Menos movimiento en móvil
     
     if (bg) bg.style.transform = `translateY(${scroll * 0.5}px)`;
     if (hero) hero.style.opacity = Math.max(1 - scroll/600, 0);
+    if (bg) bg.style.transform = `translateY(${scroll * speed}px)`; // Menos movimiento en móvil
 
 // --- SE VUELVE A ESCRIBIR EL NOMBRE DE LUCIA Y JULIO AL INCIO CUANDO SUBO EL SCROLL / NUEVO: REINICIO DE MÁQUINA DE ESCRIBIR EN EL HERO (Lucia & Julio) ---
     const l1 = document.querySelector('.typing-line-1');
@@ -133,7 +140,7 @@ window.addEventListener('scroll', function() {
 
 function createPetals() {
     const container = document.getElementById('petals-container');
-    const petalCount = 25; // Cantidad de pétalos al mismo tiempo
+    const petalCount = window.innerWidth < 768 ? 12 : 25; // Cantidad de pétalos al mismo tiempo
 
     for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('div');
@@ -164,3 +171,41 @@ function createPetals() {
 
 // Ejecutar la función al cargar la página
 document.addEventListener('DOMContentLoaded', createPetals);
+
+
+// --- LÓGICA DE MÚSICA ---
+function toggleMusica() {
+    const musica = document.getElementById('musica-boda');
+    const btn = document.getElementById('music-control');
+    const icon = document.getElementById('music-icon');
+
+    if (musica.paused) {
+        musica.play();
+        btn.classList.add('playing');
+        // Icono de pausa o activo
+        icon.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M12 3v18m5-14v10m5-7v4M7 7v10m-5-7v4" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
+    } else {
+        musica.pause();
+        btn.classList.remove('playing');
+        // Icono de play (estático)
+        icon.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M5 3l14 9-14 9V3z"/></svg>';
+    }
+}
+
+// --- LÓGICA DE SCROLL (SUBIR Y MOSTRAR FLECHA) ---
+window.onscroll = function() {
+    const btnSubir = document.getElementById('scroll-top');
+    // Si bajamos más de 500px, mostramos la flecha
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        btnSubir.classList.add('show');
+    } else {
+        btnSubir.classList.remove('show');
+    }
+};
+
+function subirTodo() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Subida elegante y suave
+    });
+}
