@@ -424,3 +424,68 @@ body { margin: 0; background: #f9f7f2; overflow-x: hidden; }
         opacity: 0;
     }
 }
+
+/* --- FIX PARA MÓVILES (RESPONSIVE) --- */
+
+@media (max-width: 768px) {
+    /* Ajuste de fuentes globales para móvil */
+    .font-manos {
+        font-size: 2.5rem !important; /* Evita que los nombres gigantes rompan el layout */
+        line-height: 1.2;
+    }
+
+    /* Ajuste del Itinerario en móvil */
+    #itinerario {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    /* Convertir ZigZag en columna simple */
+    #itinerario .relative.flex {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    /* Reducir tamaño de iconos 3D en móvil */
+    .glass-icon-3d {
+        width: 90px !important;
+        height: 90px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .glass-icon-3d svg {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    /* Quitar rellenos laterales que empujan el texto hacia afuera */
+    .md\:pr-20, .md\:pl-20 {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Ajustar textos del itinerario */
+    #itinerario h3.font-manos {
+        font-size: 2rem !important;
+    }
+
+    #itinerario p.font-cinzel {
+        font-size: 0.9rem !important;
+    }
+
+    /* Ajuste de la sección de pases (Confirmar asistencia) */
+    #nombre-invitado {
+        font-size: 3rem !important;
+    }
+    
+    /* Asegurar que las imágenes de los novios no se corten mal */
+    .min-h-[400px] {
+        min-h-[300px] !important;
+    }
+}
+
+/* Evitar scroll horizontal por animaciones AOS */
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+}
