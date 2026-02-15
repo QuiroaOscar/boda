@@ -103,13 +103,13 @@ body { margin: 0; background: #f9f7f2; overflow-x: hidden; }
     border-top: 8px solid #738ca3;
 }
 
-/* --- Tamaño de la letra de Lucia & Julio despues del Sobre (invitacion) MAQUINA DE ESCRIBIR--- */
+/* --- Tamaño de la letra de Julio & Lucia despues del Sobre (invitacion) MAQUINA DE ESCRIBIR--- */
 .typing-line-1 {
     font-size: clamp(3rem, 10vw, 150px);
     line-height: 1.1 !important; /* Más espacio vertical */
     text-align: center;
     white-space: normal;
-    padding: 10px 0;
+    padding: 10px/*0 espacio de las letras de Julio y Lucia*/;
     margin-bottom: 10px;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Sombra para que resalte en la foto */
 }
@@ -339,7 +339,7 @@ body { margin: 0; background: #f9f7f2; overflow-x: hidden; }
     border-radius: 50%;
 }
 
-/* Estilo de iconos de la parte del ITINERARIO */
+/* Estilo de iconos y colores en la de la parte del ITINERARIO */
 
 /* Contenedor de Icono Estilo 3D / Glassmorphism */
 .glass-icon-3d {
@@ -374,7 +374,7 @@ body { margin: 0; background: #f9f7f2; overflow-x: hidden; }
     transform: translateX(-50%);
     z-index: 10;
     color: white;
-    background: #1a3016; /* Color del cuadro para tapar la línea */
+    background: #a97a22; /* Color del cuadro para tapar la línea */
     padding: 10px;
     border-radius: 50%;
     font-size: 18px;
@@ -646,4 +646,129 @@ body, html {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
+}
+
+/* Seccion de las fotos ADICIONALES NUESTRA HISTORIA DE AMOR */
+
+/* --- ESTILOS GALERÍA MEJORADA --- */
+#galeria-fotos {
+    background-color: #f0f9fa; /* Celeste muy clarito de fondo */
+    min-height: 1600px;
+}
+
+/* Fondo de Anillos y Corazones */
+.patterns-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 30c-5-10-15-10-20-5s-5 15 0 20l20 20 20-20c5-5 5-15 0-20s-15-5-20 5z' fill='%237fa9ae'/%3E%3Ccircle cx='30' cy='70' r='10' stroke='%237fa9ae' fill='none' stroke-width='2'/%3E%3Ccircle cx='40' cy='75' r='10' stroke='%237fa9ae' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+}
+
+.collage-container {
+    height: 200px;
+}
+
+/* Fotos tipo Polaroid Grandes */
+.polaroid-large {
+    position: absolute;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    width: 320px; /* Más grandes */
+    transform: rotate(var(--rotate));
+    top: var(--top);
+    left: var(--left);
+    right: var(--right);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 10;
+}
+
+.polaroid-large img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Orilla inferior Celeste */
+.polaroid-bar {
+    height: 40px;
+    background-color: #a2d2df; /* Celeste seleccionado */
+    margin-top: 15px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.polaroid-bar::after {
+    content: '❤️';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.polaroid-large:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE PARA MÓVIL */
+@media (max-width: 768px) {
+    #galeria-fotos {
+        min-height: 2500px; /* Más espacio para fotos verticales */
+    }
+
+    .collage-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .polaroid-large {
+        position: relative !important;
+        width: 90% !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        margin-bottom: 40px !important;
+        transform: rotate(var(--rotate)) !important;
+    }
+
+    .polaroid-large img {
+        height: 300px;
+    }
+
+    .text-center.mt-\[900px\] {
+        margin-top: 50px !important;
+    }
+}
+
+/* --- ESTILOS SECCIÓN FINAL --- */
+#footer-mensaje {
+    /* ALTURA mínima o TAMANO PARA EL FOOTER O FOTO FINAL para que luzca el fondo */
+    min-height: 100vh; 
+}
+
+/* Efecto de suavizado para el texto manuscrito */
+#footer-mensaje .font-manos {
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    word-spacing: 5px;
+}
+
+/* Ajuste Responsive */
+@media (max-width: 768px) {
+    #footer-mensaje {
+        background-attachment: scroll; /* El parallax (PARALLAX PARA EL ZOOM O EFECTO DE LA LETRA) suele desactivarse en móviles por rendimiento */
+        min-height: 50vh;
+    }
+
+    #footer-mensaje .font-manos {
+        font-size: 2.2rem !important; /* Texto un poco más pequeño en móviles */
+        line-height: 1.4;
+    }
 }
