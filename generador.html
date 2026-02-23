@@ -39,7 +39,8 @@
             if(!nombre || !pases) { alert("Por favor llena ambos campos"); return; }
 
             // IMPORTANTE: Cambia esta URL por la URL real de tu invitación
-            const urlBase = window.location.href.replace('generador.html', 'index.html');
+            // const urlBase = window.location.href.replace('generador.html', 'index.html'); GENERADOR DESDE MI EQUIPO LOCAL, DESMARCAR AL INICIO (//) SI NECESITO HACERLO LOCAL EN MI PC
+            const urlBase = "https://quiroaoscar.github.io/boda/index.html"; //GENERADOR DESDE GITHUB, MARCAR O DESMARCAR AL INICIO (//) SI NECESITO HACERLO EN LINEA DESDE GITHUB
             const linkFinal = `${urlBase}?n=${nombre}&p=${pases}`;
 
             // Copiar al portapapeles automáticamente
